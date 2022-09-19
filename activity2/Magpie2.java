@@ -35,45 +35,50 @@ public class Magpie2
         String trimStatement = statement.trim();
         String response = "";
         if (trimStatement.length() > 0) {
-            if (statement.indexOf("no") >= 0)
+            if (findKeyword(statement, "no") >= 0)
             {
                 response = "Why so negative?";
             }
-            else if (statement.indexOf("mother") >= 0
-            || statement.indexOf("father") >= 0
-            || statement.indexOf("sister") >= 0
-            || statement.indexOf("brother") >= 0)
+            else if (findKeyword(statement, "mother") >= 0
+            || findKeyword(statement, "father") >= 0
+            || findKeyword(statement, "sister") >= 0
+            || findKeyword(statement, "brother") >= 0)
             {
                 response = "Tell me more about your family.";
             }
-            else if (statement.indexOf("dog") >= 0 
-            || statement.indexOf("cat") >= 0)
+            else if (findKeyword(statement, "dog") >= 0 
+            || findKeyword(statement, "cat") >= 0)
             {
                 response = "Tell me more about your pets.";
             }
-            else if (statement.indexOf("Mr. Jaffe") >= 0) 
+            else if (findKeyword(statement, "Mr. Jaffe") >= 0) 
             {
                 response = "Mr jaffe sounds like da goat teacher ong fr fr";
             }
-            else if (statement.indexOf("Hello") >= 0)
+            else if (findKeyword(statement, "Hello") >= 0)
             {
                 response = "What is popping my good sir, how are you doing?";
             }
-            else if (statement.indexOf("Mrs. Frerichs") >= 0) 
+            else if (findKeyword(statement, "Mrs. Frerichs") >= 0) 
             {
                 response = "GG go next good luck next year";
             }
-            else if (statement.indexOf("Patrick Henry Highschool") >= 0
-                    || statement.indexOf("PHHS") >=0)
+            else if (findKeyword(statement, "Patrick Henry Highschool") >= 0
+                    || findKeyword(statement, "PHHS") >=0)
             {
                 response = "I love that school, it is the best highschool in San Diego California USA Earth. Who is your favorite teacher here?";
             }
-            else if (statement.indexOf("Mr") >= 0
-                    || statement.indexOf("Mrs") >= 0
-                    || statement.indexOf("mr") >= 0
-                    || statement.indexOf("mrs") >=0)
+            else if (findKeyword(statement, "Mr") >= 0
+                    || findKeyword(statement, "Mrs") >= 0
+                    || findKeyword(statement, "mr") >= 0
+                    || findKeyword(statement, "mrs") >=0)
             {
                 response = "Wow! What a great teacher";
+            }
+            else if (findKeyword(statement, "What is your name") >=0
+                    || findKeyword(statement, "What's your name") >=0)
+            {
+                response = "My name is rdos";
             }
             else
             {
@@ -122,5 +127,60 @@ public class Magpie2
         }
 
         return response;
+    }
+    
+    private int findKeyword(String statement, String goal,
+            int startPos)
+    {
+        String phrase = statement.trim();
+        // The only change to incorporate the startPos is in
+        // the line below
+        int psn = phrase.toLowerCase().indexOf(
+                goal.toLowerCase(), startPos);
+
+        // Refinement--make sure the goal isn't part of a
+        // word
+        while (psn >= 0)
+        {
+            // Find the string of length 1 before and after
+            // the word
+            String before = " ", after = " ";
+            if (psn > 0)
+            {
+                before = phrase.substring(psn - 1, psn)
+                        .toLowerCase();
+            }
+            if (psn + goal.length() < phrase.length())
+            {
+                after = phrase.substring(
+                        psn + goal.length(),
+                        psn + goal.length() + 1)
+                        .toLowerCase();
+            }
+
+            // If before and after aren't letters, we've
+            // found the word
+            if (((before.compareTo("a") < 0) || (before
+                    .compareTo("z") > 0)) // before is not a
+                                            // letter
+                    && ((after.compareTo("a") < 0) || (after
+                            .compareTo("z") > 0)))
+            {
+                return psn;
+            }
+
+            // The last position didn't work, so let's find
+            // the next, if there is one.
+            psn = phrase.indexOf(goal.toLowerCase(),
+                    psn + 1);
+
+        }
+
+        return -1;
+    }
+    
+    private int findKeyword(String statement, String goal)
+    {
+        return findKeyword(statement, goal, 0);
     }
 }
