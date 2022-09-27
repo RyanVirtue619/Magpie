@@ -14,8 +14,11 @@ import java.util.Random;
  * @author Laurie White
  * @version April 2012
  */
+
+
 public class JohnLennon
 {
+    String prevStatement = "-217348724098721409872140931";
     /**
      * Get a default greeting     
      * @return a greeting
@@ -34,44 +37,48 @@ public class JohnLennon
      */
     public String getResponse(String statement)
     {
+        
         String response = "";
         if (statement.length() == 0)
         {
-            response = "Ello there";
+            response = "Cheerio";
         }
-        else if (findKeyword(statement, "who are you")  >= 0) {
+        else if(findKeyword(statement, prevStatement, 0) >= 0)  
+        {
+            response = "Oi try typing sum diffy or i'll send you to the ozzy you blert y'know.";
+        }
+        else if (findKeyword(statement, "who are you", 0)  >= 0) {
             response = "I'm john lennon, nice to meet you";
         }
-        else if (findKeyword(statement, "what are you famous for?") >= 0) {
-            response = "I'm from the beatles";
+        else if (findKeyword(statement, "what are you famous for?", 0) >= 0) {
+            response = "I'm from the beatles y'know";
         }
-        else if (findKeyword(statement, "family?") >= 0) {
-            response = "My wife's name is Cynthia Lennon, and I have two sons named Sean and Julian";
+        else if (findKeyword(statement, "family?", 0) >= 0) {
+            response = "My wife's name is Cynthia Lennon, and I have two sons named Sean and Julian y'know";
         }
-        else if (findKeyword(statement, "where were you born") >=0) {
-            response = "I was born in Liverpool";
+        else if (findKeyword(statement, "where were you born", 0) >=0) {
+            response = "I was born in Liverpool y'know";
         }
-        else if (findKeyword(statement, "where do you live") >=0 ) {
+        else if (findKeyword(statement, "where do you live", 0) >=0 ) {
             response = "I am dead";
         }
-        else if(findKeyword(statement, "how is your day") >= 0) {
-            response = "the last day i lived was in 1980 december 8th when i got shot";
+        else if(findKeyword(statement, "how is your day", 0) >= 0) {
+            response = "the last day i lived was in 1980 december 8th when i got shot 'know";
         }
-        else if(findKeyword(statement, "how did you die") >= 0) {
-            response = "Mark David Chapman shot me 5 times with a revolver";
+        else if(findKeyword(statement, "how did you die", 0) >= 0) {
+            response = "Mark David Chapman shot me 5 times with a revolver y'know";
         }
-        else if (findKeyword(statement, "no") >= 0)
+        else if (findKeyword(statement, "no", 0) >= 0)
         {
             response = "Why so negative?";
         }
-        else if (findKeyword(statement, "mother") >= 0
-                || findKeyword(statement, "father") >= 0
-                || findKeyword(statement, "sister") >= 0
-                || findKeyword(statement, "brother") >= 0)
+        else if (findKeyword(statement, "mother", 0) >= 0
+                || findKeyword(statement, "father", 0) >= 0
+                || findKeyword(statement, "sister", 0) >= 0
+                || findKeyword(statement, "brother", 0) >= 0)
         {
             response = "Tell me more about your family.";
         }
-
         // Responses which require transformations
         else if (findKeyword(statement, "I want to", 0) >= 0)
         {
@@ -113,6 +120,7 @@ public class JohnLennon
                 }
             }
         }
+        prevStatement = statement;
         return response;
     }
     
@@ -281,13 +289,10 @@ public class JohnLennon
     }
     
     private String [] randomResponses = {"Interesting, tell me more",
-            "Hmmm.",
-            "Do you really think so?",
-            "You don't say.",
-            "Oh really?",
-            "That's crazy",
+            "Ah of course mate",
             "For sure",
-            "Alright then"
+            "You're bloody stupid",
+            "Say sumfin not schtewpid for once yeh?"
     };
     
 }
