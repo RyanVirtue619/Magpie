@@ -45,28 +45,28 @@ public class JohnLennon
         }
         else if(findKeyword(statement, prevStatement, 0) >= 0)  
         {
-            response = "Oi try typing sum diffy or i'll send you to the ozzy you blert y'know.";
+            response = "Oi try typing sum diffy or i'll send you to the ozzy you blert.";
         }
-        else if (findKeyword(statement, "who are you", 0)  >= 0) {
+        else if (findKeyword(statement, "are you", 0)  >= 0) {
             response = "I'm john lennon, nice to meet you";
         }
-        else if (findKeyword(statement, "what are you famous for?", 0) >= 0) {
-            response = "I'm from the beatles y'know";
+        else if (findKeyword(statement, "famous for", 0) >= 0) {
+            response = "I'm from the beatles";
         }
-        else if (findKeyword(statement, "family?", 0) >= 0) {
-            response = "My wife's name is Cynthia Lennon, and I have two sons named Sean and Julian y'know";
+        else if (findKeyword(statement, "your amily", 0) >= 0) {
+            response = "My wife's name is Cynthia Lennon, and I have two sons named Sean and Julian";
         }
-        else if (findKeyword(statement, "where were you born", 0) >=0) {
-            response = "I was born in Liverpool y'know";
+        else if (findKeyword(statement, "you born", 0) >=0) {
+            response = "I was born in Liverpool";
         }
-        else if (findKeyword(statement, "where do you live", 0) >=0 ) {
+        else if (findKeyword(statement, "you live", 0) >=0 ) {
             response = "I am dead";
         }
         else if(findKeyword(statement, "how is your day", 0) >= 0) {
             response = "the last day i lived was in 1980 december 8th when i got shot 'know";
         }
-        else if(findKeyword(statement, "how did you die", 0) >= 0) {
-            response = "Mark David Chapman shot me 5 times with a revolver y'know";
+        else if(findKeyword(statement, "you die", 0) >= 0) {
+            response = "Mark David Chapman shot me 5 times with a revolver";
         }
         else if (findKeyword(statement, "no", 0) >= 0)
         {
@@ -289,10 +289,11 @@ public class JohnLennon
     }
     
     private String [] randomResponses = {"Interesting, tell me more",
-            "Ah of course mate",
+            "Ah of course",
             "For sure",
-            "You're bloody stupid",
-            "Say sumfin not schtewpid for once yeh?"
+            "Hmmm",
+            "I see",
+            "Goobly gooble goop goop doop gooble."
     };
     
 }
